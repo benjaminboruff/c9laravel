@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="centered">
-        <h1>I greet {{ $name or 'you' }}!</h1>
+        <h1>I greet {{ $name }}!</h1>
     </div>
 @endsection
