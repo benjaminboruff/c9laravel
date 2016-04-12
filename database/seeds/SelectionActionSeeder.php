@@ -26,5 +26,10 @@ class SelectionActionSeeder extends Seeder
         $action_seeder->name = "Kiss";
         $action_seeder->niceness = 12;
         $action_seeder->save();
+        
+        $action_seeder = new SelectionAction();
+        $action_seeder->name = "Wave";
+        $action_seeder->niceness = 2;
+        $action_seeder->save();
     }
 }
