@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', 'SelectionActionController@getHome')->name('home');
 
 Route::group(['prefix' => 'do'], function(){
     

@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SelectionAction;
 
 
 class SelectionActionController extends Controller
 {
+    
+    public function getHome()
+    {
+        $actions = SelectionAction::all();
+        return view('home', ['actions' => $actions]);
+    }
+    
     // return correct view for selected action
     public function selectAction($action, $name = 'you')
     {
@@ -28,6 +36,7 @@ class SelectionActionController extends Controller
    
     }
     
+    // do something weird to the name
     private function transformName($name)
     {
         $prefix = "Your Highness, ";

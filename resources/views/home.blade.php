@@ -2,15 +2,14 @@
 
 @section('content')
     <div class="centered">
-        <a href=" {{ route('selection', ['action' => 'greet']) }} ">Greet</a>
-        <a href=" {{ route('selection', ['action' => 'hug']) }} ">Hug</a>
-        <a href=" {{ route('selection', ['action' => 'kiss']) }} ">Kiss</a>
+        @foreach($actions as $action)
+            <a href="{{ route('selection', strtolower($action->name)) }}">{{$action->name}}</a>
+        @endforeach
         <br>
         <br>
         @if (count($errors) > 0)
         
             <div>
-                
                     @foreach($errors->all() as $error)
                     
                         {{ $error }}
@@ -18,7 +17,6 @@
                         <br>
                     
                     @endforeach
-                
             </div>
         
         @endif
