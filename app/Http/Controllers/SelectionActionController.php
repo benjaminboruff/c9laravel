@@ -18,7 +18,7 @@ class SelectionActionController extends Controller
     // return correct view for selected action
     public function selectAction($action, $name = 'you')
     {
-        return view('actions.' . $action, ['name' => $name]);
+        return view('actions.general', ['action' => $action,'name' => $name]);
     }
     
     // post form
