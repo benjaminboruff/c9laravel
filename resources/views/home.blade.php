@@ -7,6 +7,21 @@
         <a href=" {{ route('selection', ['action' => 'kiss']) }} ">Kiss</a>
         <br>
         <br>
+        @if (count($errors) > 0)
+        
+            <div>
+                
+                    @foreach($errors->all() as $error)
+                    
+                        {{ $error }}
+                        <br>
+                        <br>
+                    
+                    @endforeach
+                
+            </div>
+        
+        @endif
         <form action=" {{ route('benice') }} " method="post">
             <label for="select-action">I want to ...</label>
             <select id="select-action" name="action">

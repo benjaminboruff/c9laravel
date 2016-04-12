@@ -16,15 +16,16 @@ class SelectionActionController extends Controller
     // post form
     public function postAction(Request $request)
     {
-        if (isset($request['action']) && $request['name']){
-            if ( strlen($request['name']) > 0 ){
-                return view('actions.'. $request['action'], ['name' => $this->transformName( $request['name'] ) ]);
-            }
-            
-            //return redirect()->back(); not needed?
-        }
         
-        return redirect()->back();
+        $this->validate($request, [
+            
+            'action' => 'required',
+            'name' => 'required|alpha'
+            
+        ]);
+            
+         return view('actions.'. $request['action'], ['name' => $this->transformName( $request['name'] ) ]);
+   
     }
     
     private function transformName($name)
