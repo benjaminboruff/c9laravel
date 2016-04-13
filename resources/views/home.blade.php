@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="centered">
+        
         @foreach($actions as $action)
             <a href="{{ route('selection', strtolower($action->name)) }}">{{$action->name}}</a>
         @endforeach
         <br>
         <br>
-        @if (count($errors) > 0)
         
+        @if (count($errors) > 0)
             <div>
                     @foreach($errors->all() as $error)
                     
@@ -18,8 +19,8 @@
                     
                     @endforeach
             </div>
-        
         @endif
+        
         <form action=" {{ route('benice') }} " method="post">
             <label for="select-action">I want to ...</label>
             <select id="select-action" name="action">
@@ -31,5 +32,6 @@
             <button type="submit">Submit</button>
             {{ csrf_field() }}
         </form>
+        
     </div>
 @endsection
