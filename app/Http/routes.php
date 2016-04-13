@@ -17,7 +17,7 @@ Route::group(['prefix' => 'do'], function(){
     
     Route::get('/{action}/{name?}', 'SelectionActionController@selectAction')->name('selection');
     
-    Route::post('/', 'SelectionActionController@postAction')->name('benice');
+    Route::post('/', 'SelectionActionController@postInsertAction')->name('add_action');
     
 });
 

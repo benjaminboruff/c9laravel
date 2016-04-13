@@ -22,21 +22,32 @@ class SelectionActionController extends Controller
     }
     
     // post form
-    public function postAction(Request $request)
+    public function postInsertAction(Request $request)
     {
         
         $this->validate($request, [
             
-            'action' => 'required',
-            'name' => 'required|alpha'
+            'name' => 'required|alpha|unique:selection_actions',
+            'niceness' => 'required|numeric'
             
         ]);
+        
+        $action = new SelectionAction;
+        $action->name = ucfirst(strtolower($request['name']));
+        $action->niceness = $request['niceness'];
+        $action->save();
+        
+        $actions = SelectionAction::all();
+        
+        return redirect()->route('home');
+        
+       // return view('home', ['actions' => $actions]);
             
-         return view('actions.'. $request['action'], ['name' => $this->transformName( $request['name'] ) ]);
+         //return view('actions.'. $request['action'], ['name' => $this->transformName( $request['name'] ) ]);
    
     }
     
-    // do something weird to the name
+    // do something weird to the name text
     private function transformName($name)
     {
         $prefix = "Your Highness, ";
