@@ -15,7 +15,7 @@ Route::get('/', 'SelectionActionController@getHome')->name('home');
 
 Route::group(['prefix' => 'do'], function(){
     
-    Route::get('/{action}/{name?}', 'SelectionActionController@selectAction')->name('selection');
+    Route::get('/{action}/{name?}', 'SelectionActionController@getSelectAction')->name('selection');
     
     Route::post('/', 'SelectionActionController@postInsertAction')->name('add_action');
     

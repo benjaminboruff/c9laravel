@@ -35,6 +35,14 @@
             <button type="submit">Submit</button>
             {{ csrf_field() }}
         </form>
+        <br>
+        <br>
+        
+        <ul>
+        @foreach($logs as $log)
+            <li>{{ $log->selection_action->name }}</li>
+        @endforeach
+        </ul>
         
     </div>
 @endsection
