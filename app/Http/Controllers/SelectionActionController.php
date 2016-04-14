@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SelectionAction;
 use App\SelectionActionLog;
+use DB;
 
 
 class SelectionActionController extends Controller
@@ -12,10 +13,18 @@ class SelectionActionController extends Controller
     
     public function getHome()
     {
+        // Eloquent way
         $actions = SelectionAction::all();
-        $logged_actions = SelectionActionLog::all();
         
-        return view('home', ['actions' => $actions, 'logs' => $logged_actions]);
+        // query builder way
+        //$actions = DB::table('selection_actions')->get();
+        
+        $logged_actions = SelectionActionLog::all();
+        $query = DB::table('selection_action_logs')
+                    ->join('selection_actions', 'selection_action_logs.selection_action_id', '=', 'selection_actions.id')
+                    ->get();
+        
+        return view('home', ['actions' => $actions, 'logs' => $logged_actions, 'db' => $query]);
     }
     
     // return correct view for selected action
