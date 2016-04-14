@@ -40,7 +40,12 @@
         
         <ul>
         @foreach($logs as $log)
-            <li>{{ $log->selection_action->name }}</li>
+            <li>
+                {{ $log->selection_action->name }}
+                @foreach($log->selection_action->categories as $category)
+                    {{ $category->name  }}
+                @endforeach
+            </li>
         @endforeach
         </ul>
         

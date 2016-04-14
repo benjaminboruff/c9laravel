@@ -10,4 +10,9 @@ class SelectionAction extends Model
     {
         return $this->hasMany('App\SelectionActionLog');
     }
+    
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category', 'categories_selection_actions');
+    }
 }
