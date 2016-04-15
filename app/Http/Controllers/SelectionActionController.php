@@ -14,15 +14,26 @@ class SelectionActionController extends Controller
     public function getHome()
     {
         // Eloquent way
-        $actions = SelectionAction::all();
+        $actions = SelectionAction::orderBy('niceness')->get();
         
         // query builder way
         //$actions = DB::table('selection_actions')->get();
         
+        // $logged_actions = SelectionActionLog::whereHas('selection_action', function($query)
+        //     {
+        //         $query->where('name', 'wave');
+        //     })->get();
+        
         $logged_actions = SelectionActionLog::all();
+            
+        
+        // $query = DB::table('selection_action_logs')
+        //             ->join('selection_actions', 'selection_action_logs.selection_action_id', '=', 'selection_actions.id')
+        //             ->where('selection_actions.name', 'wave')
+        //             ->get();
+        
         $query = DB::table('selection_action_logs')
-                    ->join('selection_actions', 'selection_action_logs.selection_action_id', '=', 'selection_actions.id')
-                    ->get();
+                    ->avg('id');
         
         return view('home', ['actions' => $actions, 'logs' => $logged_actions, 'db' => $query]);
     }
