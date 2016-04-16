@@ -34,6 +34,8 @@ class SelectionActionController extends Controller
         
         $query = DB::table('selection_action_logs')
                     ->avg('id');
+                    
+
         
         return view('home', ['actions' => $actions, 'logs' => $logged_actions, 'db' => $query]);
     }
