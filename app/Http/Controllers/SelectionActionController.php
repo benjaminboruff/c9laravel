@@ -27,10 +27,10 @@ class SelectionActionController extends Controller
         $logged_actions = SelectionActionLog::all();
             
         
-        $query = DB::table('selection_action_logs')
-                    ->join('selection_actions', 'selection_action_logs.selection_action_id', '=', 'selection_actions.id')
-                    ->where('selection_actions.name', 'wave')
-                    ->get();
+        // $query = DB::table('selection_action_logs')
+        //             ->join('selection_actions', 'selection_action_logs.selection_action_id', '=', 'selection_actions.id')
+        //             ->where('selection_actions.name', 'wave')
+        //             ->get();
         
         // query builder way way
         // $query = DB::table('selection_action_logs')
@@ -54,7 +54,7 @@ class SelectionActionController extends Controller
                     
 
         
-        return view('home', ['actions' => $actions, 'logs' => $logged_actions, 'db' => $query]);
+        return view('home', ['actions' => $actions, 'logs' => $logged_actions]);
     }
     
     // return correct view for selected action

@@ -39,15 +39,27 @@
         <br>
         
         <ul>
-       {{-- @foreach($logs as $log)
+            
+            
+       
+       @foreach($logs as $log)
             <li>
-                {{ $log->selection_action->name }}
+                {{ $log->selection_action }}
+                
+                {{--
+                
                 @foreach($log->selection_action->categories as $category)
+                
                     {{ $category->name  }}
+                    
                 @endforeach
+                
+                --}}
+                
             </li>
         @endforeach
-        --}}
+        
+        
         </ul>
 
     </div>
