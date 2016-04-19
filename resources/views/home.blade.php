@@ -39,7 +39,7 @@
         <br>
         
         <ul>
-        @foreach($logs as $log)
+       {{-- @foreach($logs as $log)
             <li>
                 {{ $log->selection_action->name }}
                 @foreach($log->selection_action->categories as $category)
@@ -47,9 +47,8 @@
                 @endforeach
             </li>
         @endforeach
+        --}}
         </ul>
-        
-        {{ dd($db) }}
-        
+
     </div>
 @endsection

@@ -13,7 +13,7 @@ class SelectionActionController extends Controller
     
     public function getHome()
     {
-        // Eloquent way
+        // eloquent way
         $actions = SelectionAction::orderBy('niceness')->get();
         
         // query builder way
@@ -27,13 +27,30 @@ class SelectionActionController extends Controller
         $logged_actions = SelectionActionLog::all();
             
         
-        // $query = DB::table('selection_action_logs')
-        //             ->join('selection_actions', 'selection_action_logs.selection_action_id', '=', 'selection_actions.id')
-        //             ->where('selection_actions.name', 'wave')
-        //             ->get();
-        
         $query = DB::table('selection_action_logs')
-                    ->avg('id');
+                    ->join('selection_actions', 'selection_action_logs.selection_action_id', '=', 'selection_actions.id')
+                    ->where('selection_actions.name', 'wave')
+                    ->get();
+        
+        // query builder way way
+        // $query = DB::table('selection_action_logs')
+        //             ->insertGetId([
+        //                 'selection_action_id' => DB::table('selection_actions')->select('id')->where('name','Hug')->first()->id    
+        //             ]);
+                    
+        // eloquent
+        // $hug = SelectionAction::where('name', 'Smile')->first();
+        
+        // if ($hug) {
+        //     $hug->name = 'Poop';
+        //     $hug->update();
+        // }
+        
+        // $poop = SelectionAction::where('name', 'Poop')->first();
+        
+        // if ($poop) {
+        //     $poop->delete();
+        // }
                     
 
         
